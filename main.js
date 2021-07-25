@@ -13,15 +13,20 @@
     }
 
     const url = 'https://onetwoteam.com/api/v1/dev'
+    // const url = 'http://localhost:3000/api/v1/dev'
     fetch(url, {
         method: 'GET',
+        mode: 'cors', // no-cors, *cors, same-origin
+        // cache: 'no-cache',
+        // credentials: 'no-cors',
         headers: {
-         'Content-Type': 'application/json'
+         'Content-Type': 'application/json',
         }
     })
     .then(data => {
+        console.log(data)
+        // console.log(data.opaque)
         return data.json()
-        // console.log(res)
     })
     .then(json => {
         console.log(json)
