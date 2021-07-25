@@ -14,31 +14,11 @@
 
     const url = 'https://onetwoteam.com/api/v1/dev'
     // const url = 'http://localhost:3000/api/v1/dev'
-    fetch(url, {
-        method: 'GET',
-        mode: 'cors', // no-cors, *cors, same-origin
-        // cache: 'no-cache',
-        // credentials: 'no-cors',
-        headers: {
-         'Content-Type': 'application/json',
-        }
-    })
-    .then(data => {
-        console.log(data)
-        // console.log(data.opaque)
-        return data.json()
-    })
-    .then(json => {
-        console.log(json)
-        setData(json)
-        
-    })
-
-    // const tempDate = {
-    //     "success": true,
-    //     "id": 868986,
-    //     "last_updated": 1626912000
-    // }
-
-    // setData(tempDate)
+    fetch(url)
+        .then(data => data.json())
+        .then(setData)
+        .catch(error => {
+            const numberNode = document.getElementsByClassName('painful-number')[0]
+            numberNode.innerHTML = '<span>nu pizdets</span><br/><span>no data</span>'
+        })
 })()
