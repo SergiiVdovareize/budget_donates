@@ -8,12 +8,11 @@
         const month = (date.getMonth() + 1).toString().padStart(2, 0)
         const year = date.getFullYear()
 
-        numberNode.innerText = json.id.toLocaleString()
+        numberNode.innerText = json.id.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")
         dateNode.innerText = `${day}.${month}.${year}`
     }
 
     const url = 'https://onetwoteam.com/api/v1/dev'
-    // const url = 'http://localhost:3000/api/v1/dev'
     fetch(url)
         .then(data => data.json())
         .then(setData)
