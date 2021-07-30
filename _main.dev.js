@@ -1,4 +1,6 @@
 (()=>{
+    const subdomain = window.location.hostname.split('.').slice(0, -2).join('.') || 'root';
+
     const formatAmount = amount => amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
     const showDiff = (currAmount, lastId) => {
@@ -19,20 +21,20 @@
     }
 
     const storeData = (amount) => {
-        const lastId = localStorage.getItem('lastId')
+        const lastId = localStorage.getItem(`${subdomain}-lastId`)
         
         if (isNaN(lastId) || parseInt(lastId, 10) !== amount) {
             if (lastId && !isNaN(lastId)) {
                 showDiff(amount, lastId)
-                localStorage.setItem('mediateId', lastId)
+                localStorage.setItem(`${subdomain}-mediateId`, lastId)
             }
-            localStorage.setItem('lastId', amount)
-            localStorage.setItem('lastUpdate', Date.now())
+            localStorage.setItem(`${subdomain}-lastId`, amount)
+            localStorage.setItem(`${subdomain}-lastUpdate`, Date.now())
         } else if (parseInt(lastId, 10) === amount) {
-            const lastUpdate = localStorage.getItem('lastUpdate')
+            const lastUpdate = localStorage.getItem(`${subdomain}-lastUpdate`)
             const timeDiff = (Date.now() - lastUpdate)
             if (timeDiff < 10 * 60 * 1000) {
-                showDiff(amount, localStorage.getItem('mediateId'))
+                showDiff(amount, localStorage.getItem(`${subdomain}-mediateId`))
             }
         }
     }
@@ -51,7 +53,7 @@
         dateNode.innerText = `${day}.${month}.${year}`
     }
 
-    const url = 'https://onetwoteam.com/api/v1/dev'
+    const url = `https://onetwoteam.com/api/v1/dev?source=${subdomain}`
     // const url = 'http://localhost:3000/api/v1/dev'
     fetch(url)
         .then(data => data.json())
