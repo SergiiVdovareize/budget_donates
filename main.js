@@ -53,7 +53,7 @@
         dateNode.innerText = `${day}.${month}.${year}`
     }
 
-    const url = `https://onetwoteam.com/api/v1/dev?source=${subdomain}`
+    const url = `https://onetwoteam.com/api/v1/dev?source=root`
     // const url = 'http://localhost:3000/api/v1/dev'
     fetch(url)
         .then(data => data.json())
