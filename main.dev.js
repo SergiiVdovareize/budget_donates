@@ -60,8 +60,7 @@
         .then(data => data.json())
         .then(setData)
         .catch(error => {
-            console.log(error)
             const numberNode = document.getElementsByClassName('painful-number')[0]
-            numberNode.innerHTML = '<span>nu pizdets</span><br/><span>no data</span>'
+            numberNode.innerHTML = '<span>русні пізда</span>'
         })
 })()
