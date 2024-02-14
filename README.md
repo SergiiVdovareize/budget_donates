@@ -1,3 +1,1 @@
-### Painful number
-
-https://sopainful.live
+stay tuned
